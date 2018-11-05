@@ -1,8 +1,10 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-
+import requests
 
 # Create your views here.
+from config import settings
+
 
 def login(request):
 
@@ -14,20 +16,21 @@ def login(request):
         return render(request,'members/login.html')
 
 def facebook_login(request):
-    # code = request.GET.get('code')
-    # user = authenticate(request, code=code)
-    #
-    # if user is not None:
-    #     login(request, user)
-    #     return redirect('index')
-    # return redirect('members:login')
 
+    code = request.GET.get('code')
+    url = 'https://graph.facebook.com/v3.0/oauth/access_token'
 
-    if request.method == 'POST':
-        return render(request, 'facebook_login_succed.html')
+    params = {
+        'client_id':settings.FACEBOOK_APP_ID,
+        'redirect_uri':'http://localhost:8000/facebook_login/',
+        'client_secret':settings.FACEBOOK_APP_SECRET_CODE,
+        'code':code,
+    }
 
-    else:
-        return render(request,'members/login.html')
+    response = requests.get(url,params)
+    response_dict = response.json()
+    access_token = response_dict['access_token']
+    return HttpResponse(access_token)
 
 
 def login_page(request):

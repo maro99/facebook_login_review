@@ -20,13 +20,18 @@
 
 
 
+        <a href=" https://www.facebook.com/v3.0/dialog/oauth?
+        client_id=546108805829214
+        &redirect_uri=http://localhost:8000/facebook_login/
+        &scope=email,public_profile" class="btn btn-primary">facebook login</a>
 
-        <div>
-            <form action="{% url 'facebook_login' %}" method="POST">
-                {% csrf_token %}
-                <button type="submit">facebook login</button>
-            </form>
-        </div>
+
+        <!--<div>-->
+            <!--<form action="{% url 'facebook_login' %}" method="POST">-->
+                <!--{% csrf_token %}-->
+                <!--<button type="submit">facebook login</button>-->
+            <!--</form>-->
+        <!--</div>-->
 
 
         <div>
