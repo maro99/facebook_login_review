@@ -21,7 +21,7 @@ from members import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.login_page),
-    path('login/',views.login,name='login'),
+    path('',views.login_page,name='main'),
+    path('login/',views.normal_login,name='login'),
     path('facebook_login/',views.facebook_login, name='facebook_login')
 ]
