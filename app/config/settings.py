@@ -18,8 +18,11 @@ import json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) # app
 ROOT_DIR = os.path.dirname(BASE_DIR)  # project
 SECRET_DIR = os.path.join(ROOT_DIR,'.secrets')
-secrets = json.load(open(os.path.join(SECRET_DIR,'base.json')))
+TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 
+print(TEMPLATE_DIR)
+
+secrets = json.load(open(os.path.join(SECRET_DIR,'base.json')))
 
 FACEBOOK_APP_ID = secrets['FACEBOOK_APP_ID']
 FACEBOOK_APP_SECRET_CODE = secrets["FACEBOOK_APP_SECRET_CODE"]
@@ -40,6 +43,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'members',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -63,7 +67,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
